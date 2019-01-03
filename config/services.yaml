@@ -32,4 +32,4 @@ services:
 
     update_repositories:
         class: Service\UpdateRepositories
-        arguments: [ "@doctrine.orm.entity_manager" ]
+        arguments: [ "@doctrine.orm.entity_manager"]

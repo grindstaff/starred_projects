@@ -20,6 +20,7 @@ Database Outline:
 Usage:
 - There is a command to update the listings of starred projects. It is: ``` bin/console repositories:fetch ``` 
 - This will delete all existing projects and grab a fresh copy. This is runnable by the command line as well as clicking the `Update List` button in the UI.
+- There are 2 services in use for this project. ``` ExternalRequest ``` and ``` UpdateRepositories ``` ExternalRequest performs a curl request and UpdateRepositories handles clearing the projects and storing new ones.
 
 To start:
 

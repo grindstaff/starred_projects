@@ -47,6 +47,5 @@ class ProjectController extends Controller
       );
 
       return $this->redirectToRoute('home');
-
     }
 }

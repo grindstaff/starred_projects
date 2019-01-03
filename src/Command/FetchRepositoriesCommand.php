@@ -2,17 +2,18 @@
 
 namespace App\Command;
 
-use Symfony\Component\Console\Command\Command;
+use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use App\Service\ExternalRequest;
 use App\Service\UpdateRepositories;
 
-class FetchRepositoriesCommand extends Command
+class FetchRepositoriesCommand extends ContainerAwareCommand
 {
     protected static $defaultName = 'repositories:fetch';
     private $externalRequestService;
     private $updateRepositoryService;
+    private $projectUrlParameters = '?q=:php&sort=stars&order=desc&per_page=100';
 
     public function __construct(ExternalRequest $externalRequestService, UpdateRepositories $updateRepositoryService)
     {
@@ -27,8 +28,8 @@ class FetchRepositoriesCommand extends Command
         $output->writeln([
             'Fetching Repositories'
         ]);
-        
-        $url = 'https://api.github.com/search/repositories?q=:php&sort=stars&order=desc&per_page=100';
+
+        $url = $this->getContainer()->getParameter('project_api_url') . $this->projectUrlParameters;
 
         $repositories = json_decode($this->externalRequestService->performRequest($url), true);
         $this->updateRepositoryService->performRequest($repositories['items']);
