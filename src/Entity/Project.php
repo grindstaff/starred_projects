@@ -107,31 +107,31 @@ class Project
     /**
      * @ORM\Column(type="datetime")
      */
-    private $repositoryCreationDate;
+    private $repository_creation_date;
 
     public function getRepositoryCreationDate()
     {
-        return $this->repositoryCreationDate;
+        return $this->repository_creation_date;
     }
 
     public function setRepositoryCreationDate($date)
     {
-        $this->repositoryCreationDate = $date;
+        $this->repository_creation_date = $date;
     }
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $repositoryLastPushDate;
+    private $repository_last_push_date;
 
     public function getRepositoryLastPushDate()
     {
-        return $this->repositoryLastPushDate;
+        return $this->repository_last_push_date;
     }
 
     public function setRepositoryLastPushDate($date)
     {
-        $this->repositoryLastPushDate = $date;
+        $this->repository_last_push_date = $date;
     }
 
     /**
