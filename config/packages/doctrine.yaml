@@ -1,0 +1,70 @@
+parameters:
+    # Adds a fallback DATABASE_URL if the env var is not set.
+    # This allows you to run cache:warmup even if your
+    # environment variables are not available yet.
+    # You should not need to change this value.
+    env(DATABASE_URL): ''
+
+doctrine:
+    dbal:
+        # configure these for your database server
+        driver: 'pdo_mysql'
+        server_version: '5.7'
+        charset: utf8mb4
+
+        # With Symfony 3.3, remove the `resolve:` prefix
+        url: '%env(resolve:DATABASE_URL)%'
+    orm:
+        auto_generate_proxy_classes: '%kernel.debug%'
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+        auto_mapping: true
+        mappings:
+            App:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/Entity'
+                prefix: 'App\Entity'
+                alias: App
+
+        dql:
+                datetime_functions:
+                    date: DoctrineExtensions\Query\Mysql\Date
+                    dateadd: DoctrineExtensions\Query\Mysql\DateAdd
+                    datediff: DoctrineExtensions\Query\Mysql\DateDiff
+                    date_format: DoctrineExtensions\Query\Mysql\DateFormat
+                    day: DoctrineExtensions\Query\Mysql\Day
+                    dayname: DoctrineExtensions\Query\Mysql\DayName
+                    strtodate: DoctrineExtensions\Query\Mysql\StrToDate
+                    timestampdiff: DoctrineExtensions\Query\Mysql\TimestampDiff
+                    week: DoctrineExtensions\Query\Mysql\Week
+                    year: DoctrineExtensions\Query\Mysql\Year
+
+                numeric_functions:
+                    acos: DoctrineExtensions\Query\Mysql\Acos
+                    asin: DoctrineExtensions\Query\Mysql\Asin
+                    atan2: DoctrineExtensions\Query\Mysql\Atan2
+                    atan: DoctrineExtensions\Query\Mysql\Atan
+                    cos: DoctrineExtensions\Query\Mysql\Cos
+                    cot: DoctrineExtensions\Query\Mysql\Cot
+                    round: DoctrineExtensions\Query\Mysql\Round
+                    sin: DoctrineExtensions\Query\Mysql\Sin
+                    tan: DoctrineExtensions\Query\Mysql\Tan
+
+                string_functions:
+                    charlength: DoctrineExtensions\Query\Mysql\CharLength
+                    concat_ws: DoctrineExtensions\Query\Mysql\ConcatWs
+                    countif: DoctrineExtensions\Query\Mysql\CountIf
+                    degrees: DoctrineExtensions\Query\Mysql\Degrees
+                    field: DoctrineExtensions\Query\Mysql\Field
+                    findinset: DoctrineExtensions\Query\Mysql\FindInSet
+                    groupconcat: DoctrineExtensions\Query\Mysql\GroupConcat
+                    ifelse: DoctrineExtensions\Query\Mysql\IfElse
+                    ifnull: DoctrineExtensions\Query\Mysql\IfNull
+                    matchagainst: DoctrineExtensions\Query\Mysql\MatchAgainst
+                    md5: DoctrineExtensions\Query\Mysql\Md5
+                    month: DoctrineExtensions\Query\Mysql\Month
+                    monthname: DoctrineExtensions\Query\Mysql\MonthName
+                    nullif: DoctrineExtensions\Query\Mysql\NullIf
+                    radians: DoctrineExtensions\Query\Mysql\Radians
+                    sha1: DoctrineExtensions\Query\Mysql\Sha1
+                    sha2: DoctrineExtensions\Query\Mysql\Sha2

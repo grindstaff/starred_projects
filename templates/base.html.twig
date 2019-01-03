@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name=category content="">
+        <meta name=keywords content="">
+        <meta name=”description” content="">
+
+        <title>{% block title %}Starred Projects{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css" />
+        <link href="https://fonts.googleapis.com/css?family=Thasadith" rel="stylesheet">
+        <link href="https://unpkg.com/ionicons@4.5.0/dist/css/ionicons.min.css" rel="stylesheet">
+        <link rel="shortcut icon" href="favicon.ico" />
+
+          <script
+          src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+           <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.10/lodash.min.js"></script>
+
+        <script src="https://unpkg.com/ionicons@4.5.0/dist/ionicons.js"></script>
+
+        {% include "styles.html.twig" %}
+
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+
+      {% set currentPath = path(app.request.attributes.get('_route'),
+                             app.request.attributes.get('_route_params')) %}
+
+      {% block nav %}
+        <nav class="navbar navbar-light bg-light navbar-expand-md fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="{{ path("home") }}">Top 100 Starred Projects in PHP</a> <a href="{{ path('update_projects') }}" class="btn btn-primary">Update List</a>
+
+          <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="navbar-collapse collapse justify-content-end" id="navbarColor01" style="">
+          </div>
+          <!-- Navbar content -->
+        </div>
+      </nav>
+      
+      {% endblock %}
+
+        <div class="content container-fluid content-flash">
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert alert-primary flash-{{ label }}">
+                        {{ message }}
+                    </div>
+
+                {% endfor %}
+            {% endfor %}
+
+            {% block body %}{% endblock %}
+        </div>
+
+    {% block javascripts %}{% endblock %}
+    </body>
+</html>

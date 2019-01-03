@@ -1,0 +1,23 @@
+parameters:
+  geocoding_api_key: accbc7b2aceee929b9e9edcb5eee7c7655d7dea
+
+services:
+    a_service:
+        class: Aws\Credentials\Credentials
+        arguments:
+            - a-different-fake-key
+            - a-different-fake-secret
+
+eight_points_guzzle:
+    # (de)activate logging/profiler; default: %kernel.debug%
+    logging: true
+
+    clients:
+        vin_lookup:
+            base_url: "https://vpic.nhtsa.dot.gov"
+
+            # plugin settings
+            plugin: ~
+
+        geocoding:
+            base_url: "https://api.geocod.io/v1.3"

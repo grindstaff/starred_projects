@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+ <main role="main">
+    <div class="row">
+      <div class="col-12 banner">
+        <div class="container description-container">
+          <h2><a target="_blank" href="{{ project.getUrl }}">{{ project.getName }}</a></h2>
+          {% include 'Shared/stars.html.twig' with {'stars':project.getStars} %}
+
+          <div class="row">
+            Repository Id: {{ project.getRepositoryId }} 
+          </div>
+
+          <div class="row">
+            {{ project.getDescription }}
+          </div>
+
+          <div class="row">
+            <div class="col-3">Created: {{ project.getRepositoryCreationDate | date('m-d-Y') }}</div>
+            <div class="col-3">Last Update: {{ project.getRepositoryLastPushDate | date('m-d-Y') }}</div>
+          </div>
+        </div>
+      </div>
+    </div>     
+   </main>
+{% endblock body %}
